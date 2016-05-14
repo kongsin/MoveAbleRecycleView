@@ -1,10 +1,12 @@
 package com.example.kongsin.moveablelistview;
 
+import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
 
 import com.example.kongsin.moveablelistview.adapter.ListAdapter;
 import com.example.kongsin.moveablelistview.adapter.SimpleTouchItemAdapter;
@@ -28,7 +30,12 @@ public class MainActivity extends AppCompatActivity {
             layoutManager.setAutoMeasureEnabled(true);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setHasFixedSize(false);
-            recyclerView.offsetChildrenVertical(5);
+            recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+                @Override
+                public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+                    super.getItemOffsets(outRect, view, parent, state);
+                }
+            });
             recyclerView.setAdapter(adapter);
         }
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SimpleTouchItemAdapter(adapter, lists));
