@@ -1,4 +1,4 @@
-package com.example.kongsin.moveablelistview;
+package com.example.kongsin.moveablelistview.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.kongsin.moveablelistview.R;
 
 import java.util.ArrayList;
 
@@ -15,9 +17,9 @@ import java.util.ArrayList;
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<String> lists;
+    ArrayList<Object> lists;
 
-    public ListAdapter(Context context, ArrayList<String> lists){
+    public ListAdapter(Context context, ArrayList<Object> lists){
         this.context = context;
         this.lists = lists;
     }
@@ -30,7 +32,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        (holder).textView.setText(lists.get(position));
+        (holder).textView.setText((String)lists.get(position));
     }
 
     @Override
